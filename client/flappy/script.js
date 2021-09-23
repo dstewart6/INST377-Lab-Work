@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded' , () => {
     const bird = document.querySelector('.bird')
-    const gameDisplay = document.querySelector('game-container')
+    const gameDisplay = document.querySelector('.game-container')
     const ground = document.querySelector('.ground-moving')
 
     let birdLeft = 220
@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded' , () => {
     let isGameOver = false
     let gap = 430
 
+
     function startGame() {
         birdBottom -= gravity
         bird.style.bottom = birdBottom + 'px'
         bird.style.left = birdLeft + 'px'
     }
-
     let gameTimerId = setInterval(startGame, 20)
 
     function control(e) {
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded' , () => {
         console.log(birdBottom)
     }
     document.addEventListener('keyup', control)
+
 
     function generateObstacle() {
         let obstacleLeft = 500
@@ -70,8 +71,8 @@ document.addEventListener('DOMContentLoaded' , () => {
         if (!isGameOver) setTimeout(generateObstacle, 3000)
 
     }
-
     generateObstacle()
+
 
     function gameOver() {
         clearInterval(gameTimerId)
@@ -84,9 +85,6 @@ document.addEventListener('DOMContentLoaded' , () => {
 
 
 })
-
-
-
 
 
 
