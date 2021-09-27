@@ -146,17 +146,17 @@ margin-bottom: 20px;
   width: 300px;
 }
 
-.photo-grid-container .carousel_actions {
+.photo-grid-container .carousel__actions {
   display: flex;
  align-items: center;
 }
 
-.photo-grid-container .carousel_actions button {
+.photo-grid-container .carousel__actions button {
   font-weight: bold;
+  width: 60px;
 }
 
-.photo-grid-container .carousel_actions button:focus {
+.photo-grid-container .carousel__actions button:focus {
   border: 3px solid rgba(0, 139, 139, 0.8);
   background: #ff8c00a6;
 }
-  
