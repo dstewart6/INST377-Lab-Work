@@ -139,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
       draw()
     }
   
-    
     ///FIX ROTATION OF TETROMINOS A THE EDGE 
     function isAtRight() {
       return current.some(index=> (currentPosition + index + 1) % width === 0)  
@@ -176,15 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
       checkRotatedPosition()
       draw()
     }
-    /////////
-  
-    
     
     //show up-next tetromino in mini-grid display
     const displaySquares = document.querySelectorAll('.mini-grid div')
     const displayWidth = 4
     const displayIndex = 0
-  
   
     //the Tetrominos without rotations
     const upNextTetrominoes = [
