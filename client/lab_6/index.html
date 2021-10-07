@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='en' dir='ltr'>
+
+    <head>
+        <meta charset='utf-8'>
+        <script src='script.js' charset='utf-8'></script>
+        <link rel='stylesheet' href='style.css'></link>
+        <title>Lab 6: Deion Stewart</title>
+    </head>
+
+    <body>
+    <script>
+        const endpoint = '';
+        const cities = [];
+        fetch(endpoint)
+            .then(blob => blob.json())
+            .then(data => cities.push(...data))
+        
+        function findMatches(wordToMatch, cities) {
+            return cities.filter(place => {
+
+                const regex = new RegExp(wordToMatch, 'gi');
+                return place.city.match(regex) || place.state.match(regex)
+
+            });
+        }
+
+        function displayMatches(){
+            const matchArray = findMatches(this.value, cities);
+            const html = matchArray.map(place => {
+                return `
+                    <li>
+                        <span class='name'>${place.city}, ${place.state}</span>
+                        <span class='name'>${place.city}, ${place.state}</span>
+                    </li>
+                `;
+            }).join('');
+            suggestions.innerHTML = html;
+        }
+
+        const searchInput = document.querySelector('.search');
+        const searchInput = document.querySelector('.suggestions');
+
+        searchInput.addEventListener('change', displayMatches);
+        searchInput.addEventListener('keyup', displayMatches);
+    </script>
+    </body>
+</html>
