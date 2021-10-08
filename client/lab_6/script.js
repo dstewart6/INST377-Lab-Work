@@ -36,5 +36,3 @@ async function windowActions() {
   searchInput.addEventListener('keyup', (evt) => { displayMatches(evt); });
 }
 window.onload = windowActions;
-
-Thank you so much for your help
