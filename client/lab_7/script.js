@@ -1,4 +1,4 @@
-async function windowActions() {
+async function dataHandler() {
   let mymap = MapInit();
   const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
   const request = await fetch(endpoint);
@@ -17,25 +17,25 @@ async function windowActions() {
 
   function displayMatches(event) {
     markers.forEach( marker => {
-        marker.remove();
-        });
-        markers = [];
+    marker.remove();
+    });
+    markers = [];
     const matchArray = findMatches(event.target.value, arrayName).slice(0, 5);
-        matchArray.forEach(p=> {
+    matchArray.forEach(p=> {
             if (p.hasOwnProperty('geocoded_column_1')) {
                 const point = p.geocoded_column_1;
                 const latlong = point.coordinates;
                 let marker = latlong;
+            
             if(latlong[0] < 0) {
-                marker = latlong.reverse()
+                marker = latlong.reverse();
             }
                 markers.push(L.marker(marker).addTo(mymap));
             if(markers.length === 1) {
                 mymap.setView(marker, 12);
                   }
-            
-
-        })
+                }
+            });
 
     const html = matchArray.map((place) => {
       const regex = new RegExp(event.target.value, 'gi');
@@ -58,7 +58,7 @@ async function windowActions() {
   }
   searchInput.addEventListener('keyup', (evt) => { displayMatches(evt); });
 }
-window.onload = windowActions;
+window.onload = dataHandler;
 
 function MapInit() {
     var mymap = L.map('mapid').setView([38.990, -76.93], 12);
@@ -71,7 +71,7 @@ function MapInit() {
     accessToken: 'pk.eyJ1IjoiZHN0ZXdhcjYiLCJhIjoiY2t1dmdwa2d0NjhzMTJxcWplMWJmZXh1ZyJ9.y531qk17fAFYO_Rp9b--AQ'
     }).addTo(mymap);
 
-    return mymap
+    return mymap;
 
 }
 
