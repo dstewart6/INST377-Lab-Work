@@ -9,7 +9,7 @@ async function windowActions() {
   function findMatches(wordToMatch, cities) {
     return cities.filter((place) => {
       const regex = new RegExp(wordToMatch, 'gi');
-      return place.city.match(regex) || place.category.match(regex);
+      return place.zip === wordToMatch;
     });
   }
 
@@ -19,18 +19,21 @@ async function windowActions() {
     markers.forEach( marker => {
         marker.remove();
         });
-    const matchArray = findMatches(event.target.value, cities);
+        markers = [];
+    const matchArray = findMatches(event.target.value, arrayName).slice(0, 5);
         matchArray.forEach(p=> {
             if (p.hasOwnProperty('geocoded_column_1')) {
-                const point = p.geocoded_column_1
-                const latlong = point.coordinates
-                const marker = latlong.reverse()
-                markers.push(marker)
-                console.log(markers)
-                markers.forEach(coordinates => {
-                    L.marker(coordinates).addTo(mymap)
-                })
+                const point = p.geocoded_column_1;
+                const latlong = point.coordinates;
+                let marker = latlong;
+            if(latlong[0] < 0) {
+                marker = latlong.reverse()
             }
+                markers.push(L.marker(marker).addTo(mymap));
+            if(markers.length === 1) {
+                mymap.setView(marker, 12);
+                  }
+            
 
         })
 
