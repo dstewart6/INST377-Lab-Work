@@ -12,24 +12,28 @@ async function windowActions() {
     });
   }
 
+  let markers = [];
+
   function displayMatches(event) {
+    markers.forEach( marker => {
+        marker.remove();
+        });
     const matchArray = findMatches(event.target.value, cities);
         matchArray.forEach(p=> {
-            let markers = [];
             if (p.hasOwnProperty('geocoded_column_1')) {
                 const point = p.geocoded_column_1
                 const latlong = point.coordinates
                 const marker = latlong.reverse()
                 markers.push(marker)
                 console.log(markers)
+                markers.forEach(coordinates => {
+                    L.marker(coordinates).addTo(mymap)
+                })
             }
 
         })
-    
-    
-    
-    
-    
+    }
+
     const html = matchArray.map((place) => {
       const regex = new RegExp(event.target.value, 'gi');
       return `
@@ -52,4 +56,6 @@ async function windowActions() {
   searchInput.addEventListener('keyup', (evt) => { displayMatches(evt); });
 }
 window.onload = windowActions;
+
+
 
