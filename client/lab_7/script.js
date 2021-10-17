@@ -1,4 +1,5 @@
 async function windowActions() {
+  let mymap = MapInit();
   const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
   const request = await fetch(endpoint);
   const arrayName = await request.json();
@@ -58,15 +59,17 @@ async function windowActions() {
 window.onload = windowActions;
 
 function MapInit() {
-    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+    var mymap = L.map('mapid').setView([38.990, -76.93]);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1,
-    accessToken: 'your.mapbox.access.token'
+    accessToken: 'pk.eyJ1IjoiZHN0ZXdhcjYiLCJhIjoiY2t1dmdwa2d0NjhzMTJxcWplMWJmZXh1ZyJ9.y531qk17fAFYO_Rp9b--AQ'
     }).addTo(mymap);
+
+    return mymap
 
 }
 
