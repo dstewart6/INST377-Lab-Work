@@ -40,7 +40,7 @@ async function dataHandler() {
 
     const html = matchArray
       .map((place) => {
-        const regex = new RegExp(event.target.value, "gi");
+        const regex = new RegExp(event.target.value, 'gi');
         return `
                 <ul>
                     <li><div class="name">${place.name}</div></li>
@@ -52,9 +52,9 @@ async function dataHandler() {
                 <br>
                 `;
       })
-      .join("");
-    if (event.target.value === "") {
-      suggestions.innerHTML = "";
+      .join('');
+    if (event.target.value === '') {
+      suggestions.innerHTML = '';
     } else {
       suggestions.innerHTML = html;
     }
